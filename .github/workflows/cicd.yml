@@ -26,4 +26,4 @@ jobs:
       # Step 4: Run Aqua Container Scanner
       - name: Aqua Container Scanner
         run: |
-          docker run -d aquapartners.azurecr.io/scanner:2403.2.15 daemon --token ${{ secrets.AQUA_TOKEN }} --host ${{ secrets.AQUA_HOST }}
+          docker run -d aquapartners.azurecr.io/scanner:2403.2.15 daemon --token ${{ secrets.AQUA_TOKEN }} --host ${{ secrets.AQUA_HOST }} && echo "batu"
