@@ -1,0 +1,29 @@
+name: CI Pipeline with Aqua Scanner
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      # Step 2: Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t $IMAGE_NAME .
+
+      # Step 3: Log in to Docker registry securely
+      - name: Log in to Docker registry
+        run: |
+          echo ${{ secrets.DOCKER_PASSWORD }} | docker login aquapartners.azurecr.io -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+      # Step 4: Run Aqua Container Scanner
+      - name: Aqua Container Scanner
+        run: |
+          docker run -d aquapartners.azurecr.io/scanner:2403.2.15 daemon --token ${{ secrets.AQUA_TOKEN }} --host ${{ secrets.AQUA_HOST }}
