@@ -26,4 +26,4 @@ jobs:
       # Step 4: Run Aqua Container Scanner
       - name: Aqua Container Scanner
         run: |
-         docker run -v /var/run/docker.sock:/var/run/docker.sock registry.aquasec.com/scanner:latest-saas scan -H https://77f96608de.cloud.aquasec.com -A 4ee93d8acd2a35da266c413af5d79d8dc1df14ec4837d150fb9a5817622ea798 --local caddy:2.4.0
+         docker run -v /var/run/docker.sock:/var/run/docker.sock aquapartners.azurecr.io/scanner:2403.2.15 scan -H https://77f96608de.cloud.aquasec.com -A 4ee93d8acd2a35da266c413af5d79d8dc1df14ec4837d150fb9a5817622ea798 --local caddy:2.4.0
